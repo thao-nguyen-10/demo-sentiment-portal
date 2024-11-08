@@ -1,0 +1,8 @@
+streamlit
+pandas
+matplotlib
+textblob
+collections
+seaborn
+numpy
+random
