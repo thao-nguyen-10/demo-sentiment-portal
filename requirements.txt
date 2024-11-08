@@ -4,4 +4,3 @@ matplotlib
 textblob
 seaborn
 numpy
-random
