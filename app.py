@@ -34,8 +34,14 @@ def generate_sample_data(num_rows=100):
         'Sales': [random.randint(1, 100) for _ in range(num_rows)],
         'Date': pd.date_range(start='2023-01-01', periods=num_rows, freq='D')
     }
+
+    data_2 = {
+        'Product1': [random.choice(products) for _ in range(num_rows)],
+        'Product2': [random.choice(products) for _ in range(num_rows)],
+        'Sales': [random.randint(1, 100) for _ in range(num_rows)]
+    }
     
-    return pd.DataFrame(data)
+    return pd.DataFrame(data), pd.DataFrame(data_2)
 
 # Streamlit app
 st.title("Sentiment Analysis Dashboard")
@@ -48,7 +54,7 @@ if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
 else:
     # Generate sample data if no file is uploaded
-    df = generate_sample_data()
+    df, df_2 = generate_sample_data()
 
 # Display the data
 st.write("Data Preview:")
@@ -107,4 +113,6 @@ st.subheader("Top 10 Selling Products and Their Corresponding Sentiment Score")
 st.dataframe(top_products)
 
 # Step 9: Top 10 combinations of products and their corresponding sales
-# Here we
+product_combinations = df_2.groupby(['Product1', 'Product2']).agg({'Sales': 'sum'}).nlargest(10, 'Sales').reset_index()
+st.subheader("Top 10 Combinations of Products and Their Corresponding Sales")
+st.dataframe(product_combinations)
