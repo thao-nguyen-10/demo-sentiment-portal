@@ -8,7 +8,7 @@ from datetime import timedelta, datetime
 # Sample Data Generation
 def generate_sample_data():
     np.random.seed(42)
-    weeks = pd.date_range(datetime.now() - timedelta(weeks=8), periods=8)
+    weeks = pd.date_range(datetime.now() - timedelta(weeks=8), periods=8).date
     products = [f'Product {i}' for i in range(1, 11)]
     services = ['Service A', 'Service B']
 
@@ -54,12 +54,15 @@ page = st.sidebar.selectbox("Select a page", list(pages.keys()))
 
 if pages[page] == "product":
     st.header("Product Sentiment Analysis")
-    
-    # Line chart for sentiment score of all products
+
+    st.subheader("Sentiment Score Trends Over Weeks")
+    # Line chart for sentiment score of all products    
     sentiment_score_chart = product_sentiment.pivot(index='Date', columns='Product', values='Sentiment Score')
     st.line_chart(sentiment_score_chart)
 
+    
     # Column chart for positive, neutral, negative feedbacks
+    st.subheader("Feedback Summary Over Weeks")
     feedback_summary = feedback_counts.groupby('Date').sum().reset_index()
     feedback_summary.set_index('Date', inplace=True)
     feedback_summary.plot(kind='bar', stacked=True)
@@ -73,7 +76,10 @@ if pages[page] == "product":
     words_negative = pd.Series(np.random.choice(['bad', 'terrible', 'awful', 'hate', 'poor'], 100)).value_counts().head(10)
 
     # Bar charts for top words
+    st.subheader("Top 10 Words in Positive Reviews about Product")
     st.bar_chart(words_positive)
+
+    st.subheader("Top 10 Words in Negative Reviews about Product")
     st.bar_chart(words_negative)
 
     # Growth rate tables (dummy data)
@@ -89,10 +95,12 @@ elif pages[page] == "service":
     st.header("Service Quality Monitoring")
 
     # Line chart for sentiment score of service
+    st.subheader("Sentiment Score Trends Over Weeks")
     service_sentiment_chart = service_sentiment.pivot(index='Date', columns='Service', values='Sentiment Score')
     st.line_chart(service_sentiment_chart)
 
     # Column chart for positive, neutral, negative feedbacks about service
+    st.subheader("Feedback Summary Over Weeks")
     service_feedback_summary = feedback_counts.groupby('Date').sum().reset_index()
     service_feedback_summary.set_index('Date', inplace=True)
     service_feedback_summary[['Positive', 'Neutral', 'Negative']].plot(kind='bar', stacked=True)
