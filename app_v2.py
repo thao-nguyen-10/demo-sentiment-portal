@@ -4,6 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import timedelta, datetime
+import random
+from textblob import TextBlob
+from collections import Counter
 
 # Function to analyze sentiment
 def analyze_sentiment(text):
