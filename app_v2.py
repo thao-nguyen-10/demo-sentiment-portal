@@ -74,16 +74,6 @@ def load_data(uploaded_file):
 st.set_page_config(page_title="Multi-Page App", layout="wide")
 st.title("Business Analytics Dashboard")
 
-# Sidebar for navigation
-pages = {
-    "Overview": "overview",
-    "Product Sentiment Analysis": "product",
-    "Service Quality Monitoring": "service",
-    "Competitor Analysis": "competitor"
-}
-
-page = st.sidebar.selectbox("Select a page", list(pages.keys()))
-
 def page1_overview():
     st.title("Overview sentiment report")
     uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
@@ -153,8 +143,7 @@ def page2_product():
 
     if 'data' in st.session_state:
         df = st.session_state.data
-    
-        st.subheader("Sentiment Score Trends Over Months")
+        
         # Calculate sentiment scores
         df['Product Sentiment Score'] = df['Product Comment'].apply(analyze_sentiment)
 
@@ -217,7 +206,6 @@ def page3_service():
     if 'data' in st.session_state:
         df = st.session_state.data
     
-        st.subheader("Sentiment Score Trends Over Months")
         # Calculate sentiment scores
         df['Service Sentiment Score'] = df['Service Comment'].apply(analyze_sentiment)
 
