@@ -304,6 +304,7 @@ def page4_competitor():
         plt.title('Monthly Average Sentiment Score')
         plt.xlabel('Month')
         plt.ylabel('Average Sentiment Score')
+        plt.legend()
         st.pyplot()
 
         # Step 2: Filter product sentiment for the specific shop
@@ -321,6 +322,7 @@ def page4_competitor():
         plt.title('Monthly Average Product Sentiment Score')
         plt.xlabel('Month')
         plt.ylabel('Average Product Sentiment Score')
+        plt.legend()
         st.pyplot()
 
         # Step 3: Filter service sentiment for the specific shop
@@ -338,6 +340,7 @@ def page4_competitor():
         plt.title('Monthly Average Service Sentiment Score')
         plt.xlabel('Month')
         plt.ylabel('Average Service Sentiment Score')
+        plt.legend()
         st.pyplot()
 
         # Step 4: Calculate the gap in sentiment scores
