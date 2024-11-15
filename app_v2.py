@@ -71,7 +71,7 @@ def load_data(uploaded_file):
 
 # Streamlit App
 # Page configuration
-st.set_page_config(page_title="Multi-Page App", layout="wide")
+st.set_page_config(page_title="Multi-Page App", layout="centered")
 st.title("Business Analytics Dashboard")
 
 def page1_overview():
