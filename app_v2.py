@@ -81,7 +81,7 @@ pages = {
 
 page = st.sidebar.selectbox("Select a page", list(pages.keys()))
 
-def page1_overview:
+def page1_overview():
     st.title("Overview sentiment report")
     uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
 
@@ -145,7 +145,7 @@ def page1_overview:
     sns.barplot(x='Count', y='Word', data=negative_word_df)
     st.pyplot()
 
-def page2_product:
+def page2_product():
     st.title("Product Sentiment Report")
 
     if 'data' in st.session_state:
@@ -209,7 +209,7 @@ def page2_product:
         st.subheader("10 Products with Lowest Sentiment Score and Their Corresponding Sale")
         st.dataframe(bottom_sentiment)
 
-def page3_service:
+def page3_service():
     st.title("Service Quality Monitoring")
     if 'data' in st.session_state:
         df = st.session_state.data
@@ -285,7 +285,7 @@ def page3_service:
         plt.ylabel('Number of Customers')
         st.pyplot()
 
-def page4_competitor:
+def page4_competitor():
     st.title("Competitor Analysis")
 
     if 'data' in st.session_state:
