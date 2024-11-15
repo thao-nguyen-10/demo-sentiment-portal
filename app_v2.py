@@ -261,7 +261,7 @@ def page3_service():
         # Categorize customers
         df['Customer Segment'] = pd.cut(
             df['Service Sentiment Score'],
-            bins=[-1, avg_positive_reviews, p75_positive_reviews, customer_data['Service Sentiment Score'].max()],
+            bins=[-1, avg_positive_reviews, p75_positive_reviews, df['Service Sentiment Score'].max()],
             labels=['Less than Average', 'Average to 75th Percentile', 'More than 75th Percentile']
         )
 
